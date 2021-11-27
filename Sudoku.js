@@ -31,6 +31,7 @@ let selectedTile;
 let disableSelect;
 let easy = [easy1[0], easy2[0], easy3[0]];
 let medium = [medium1[0], medium2[0]];
+let boardCheck;
 
 window.onload = function () {
     id("start-btn").addEventListener("click", startGame);
@@ -62,6 +63,7 @@ function startGame() {
     if (id("diff-1").checked) board = easy[Math.floor(Math.random() * 3)];
     else if (id("diff-2").checked) board = medium[Math.floor(Math.random() * 2)];
     else board = hard[0];
+    boardCheck = board;
     lives = 3;
     disableSelect = false;
     id("lives").textContent = "Lives Remaining 3";
@@ -217,9 +219,16 @@ function endGame() {
 function checkCorrect(tile) {
     //Set solution based on difficulty selection
     let solution;
-    if (id("diff-1").checked) solution = easy[1];
-    else if (id("diff-2").checked) solution = medium[1];
-    else solution = hard[1]
+    if (id("diff-1").checked) {
+        if (boardCheck === easy1[0]) solution = easy1[1];
+        else if (boardCheck === easy2[0]) solution = easy2[1];
+        else solution = easy3[1];
+    }
+    else if (id("diff-2").checked) {
+        if (boardCheck === medium1[0]) solution = medium1[1];
+        else solution = medium2[1];
+    }
+    else solution = hard[1];
     //If tile's number is equal to solution's number
     if (solution.charAt(tile.id) === tile.textContent) return true;
     else return false;
@@ -254,10 +263,10 @@ function qsa(selector) {
     return document.querySelectorAll(selector);
 }
 
-// window.addEventListener('click', musicPlay);
-//
-// function musicPlay() {
-//     document.getElementById('music').play();
-//     document.getElementById('music').pause();
-//     window.removeEventListener('music', musicPlay);
-// }
+window.addEventListener('click', musicPlay);
+
+function musicPlay() {
+    document.getElementById('music').play();
+    // document.getElementById('music').pause();
+    window.removeEventListener('music', musicPlay);
+}
