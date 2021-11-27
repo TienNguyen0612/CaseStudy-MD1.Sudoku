@@ -34,5 +34,9 @@ let medium = [medium1[0], medium2[0]];
 
 window.onload = function () {
     //Run startgame function when button is clicked
+id("start-btn").addEventListener("click", startGame);
+}
 
+function id(id) {
+    return document.getElementById(id);
 }
