@@ -210,9 +210,9 @@ function endGame() {
     disableSelect = true;
     clearTimeout(timer);
     if (lives === 0 || timeRemaining === 0) {
-        id("lives").textContent = "You Lost";
+        id("lives").textContent = "You Lost, Try it again ...";
     } else {
-        id("lives").textContent = "You Won";
+        id("lives").textContent = "You Won, Congratulations !";
     }
 }
 
@@ -223,12 +223,10 @@ function checkCorrect(tile) {
         if (boardCheck === easy1[0]) solution = easy1[1];
         else if (boardCheck === easy2[0]) solution = easy2[1];
         else solution = easy3[1];
-    }
-    else if (id("diff-2").checked) {
+    } else if (id("diff-2").checked) {
         if (boardCheck === medium1[0]) solution = medium1[1];
         else solution = medium2[1];
-    }
-    else solution = hard[1];
+    } else solution = hard[1];
     //If tile's number is equal to solution's number
     if (solution.charAt(tile.id) === tile.textContent) return true;
     else return false;
@@ -256,7 +254,7 @@ function id(id) {
 }
 
 function qs(selector) {
-    return document.querySelector(selector)
+    return document.querySelector(selector);
 }
 
 function qsa(selector) {
